@@ -9,12 +9,14 @@ export default function Login({ setToken, setRole }) {
 
   const handleLogin = async () => {
     const res = await API.post("/auth/login", { email, password });
-    sessionStorage.setItem("token", res.data.token);
+
+    sessionStorage.setItem("accessToken", res.data.accessToken);
+    sessionStorage.setItem("refreshToken", res.data.refreshToken);
     sessionStorage.setItem("role", res.data.role);
     sessionStorage.setItem("userId", res.data.userId);
     sessionStorage.setItem("tenantId", res.data.tenantId);
 
-    setToken(res.data.token);
+    setToken(res.data.accessToken);
     setRole(res.data.role);
   };
 
